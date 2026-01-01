@@ -19,12 +19,12 @@ import re
 from apscheduler.schedulers.blocking import BlockingScheduler
 
 
-DEFAULT_INTERVAL_SECONDS = 10
+DEFAULT_INTERVAL_SECONDS = 30
 
 MAIL_PATTERN = re.compile(".*<(.+@.+)>|([^<>]+)")
 SENDMAIL_BIN_PATH = "/usr/sbin/sendmail"  # full path!
 DEFAULT_SOCKET_TIMEOUT = 10
-WORKER_SIZE = 1
+WORKER_SIZE = 5
 DSN_TOKEN = os.environ.get('IMAP_AUTO_FORWARD_DSN')
 
 LOGGING = {
@@ -40,7 +40,7 @@ LOGGING = {
         'defaultHandler': {
             'class': 'logging.handlers.RotatingFileHandler',
             'formatter': 'defaultFormatter',
-            'filename': 'imap-auto-forward.log',
+            'filename': '/var/log/imap-auto-forward.log',
             'maxBytes': 1024 * 1024 * 5,
             'backupCount': 5,
         },
